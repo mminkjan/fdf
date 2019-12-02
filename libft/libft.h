@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/14 11:16:37 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/06/06 13:55:01 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/02 17:40:58 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ int					ft_countdigits(int n);
 void				ft_nametag(void);
 void				ft_lstaddback(t_list **alst, t_list *blst);
 int					get_next_line(const int fd, char **line);
+void				ft_exit(char *str);
 #endif

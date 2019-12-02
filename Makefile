@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/02 17:31:00 by mminkjan      ########   odam.nl          #
+#    Updated: 2019/12/02 18:24:57 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 LIBFT = libft/
 
 SCRS = ./scrs/
-SCRS_FILE = main
+SCRS_FILE = main mlx_setup
 
 CFILES =  $(SCRS_FILE:%=$(SCRS)%.c)
 

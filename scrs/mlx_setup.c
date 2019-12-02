@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   mlx_setup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/02 18:45:28 by mminkjan      ########   odam.nl         */
+/*   Created: 2019/12/02 18:16:17 by mminkjan       #+#    #+#                */
+/*   Updated: 2019/12/02 18:44:56 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		main(int argc, char **argv)
+void	mlx_setup(t_fdf *fdf)
 {
-	t_fdf		*fdf;
-	// t_points	points;
-	
-	(void)argv;
-	if (argc != 2)
-		ft_exit(USAGE_ERR);
-	fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf));
-	if (fdf == NULL)
-		ft_exit(USAGE_ERR);
-	ft_bzero(fdf, sizeof(t_fdf));
-	fdf->map_name = ft_strdup(argv[1]);
-	mlx_setup(fdf);
-	// import_map(&fdf, &points, argv);
-	// calculate_points(&fdf, &points); //keep track of head of list here
-	mlx_loop(fdf->mlx_ptr);
+	int		endian;
+
+	endian = 0;
+	fdf->mlx_ptr = mlx_init();
+	fdf->window_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH + 400, HEIGHT,
+	fdf->map_name);
+	fdf->image_ptr = mlx_new_image(fdf->mlx_ptr, WIDTH, HEIGHT);
+	fdf->addr_str = mlx_get_data_addr(fdf->image_ptr, &fdf->bpp,
+	&fdf->size_line, &endian);
 }
