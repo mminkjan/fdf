@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/03 11:35:49 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/03 12:28:24 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define USAGE_ERR	"usage error: input valid map\n"
 # define FILE_ERR	"error: opening file\n"
 # define MALLOC_ERR	"error: malloc\n"
-# define NUM_ERR	"error: altitude value not a int\n"
+# define INVAL_ERR	"error: invalid map\n"
 
 # define WIDTH	1200
 # define HEIGHT 900

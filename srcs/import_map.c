@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/03 11:44:14 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/03 12:33:29 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static t_points		*new_alt_node(char *alt_values)
 	if (new_str == NULL)
 		ft_exit(MALLOC_ERR);
 	value = (int)ft_atoi(new_str[0]);
-	if (ft_isdigit(value) == 1)
-		ft_exit(NUM_ERR);
 	new_node->alt = value;
 	new_node->next = NULL;
 	free_str(new_str);
@@ -77,7 +75,13 @@ static void			line_extract(t_points **points,
 		alt_values++;
 		length++;
 	}
-	fdf->map_width = length;
+	if (fdf->map_width == 0)
+		fdf->map_width = length;
+	else
+	{
+		if (fdf->map_width != length)
+			ft_exit(INVAL_ERR);
+	}
 }
 
 void				import_map(t_fdf *fdf,
