@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/03 16:27:42 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/03 16:34:18 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ void					calculate_points(t_fdf *fdf, t_points *points);
 int						map_manager(t_fdf *fdf);
 
 int						key_press(int key_code, t_fdf *fdf);
+int						mouse_release(int button, int x, int y, t_fdf *fdf);
+int						mouse_press(int button, int x, int y, t_fdf *fdf);
+int						mouse_move(int x, int y, t_fdf *fdf);
 
 t_fdf					*fdf_init(void);
 
