@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/02 18:24:57 by mminkjan      ########   odam.nl          #
+#    Updated: 2019/12/03 11:45:34 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,10 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 LIBFT = libft/
 
-SCRS = ./scrs/
-SCRS_FILE = main mlx_setup
+SRCS = ./srcs/
+SRCS_FILE = main mlx_setup import_map utilities
 
-CFILES =  $(SCRS_FILE:%=$(SCRS)%.c)
+CFILES =  $(SRCS_FILE:%=$(SRCS)%.c)
 
 HFILES = ./includes/fdf.h
 
