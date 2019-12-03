@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/03 12:17:59 by jesmith       ########   odam.nl          #
+#    Updated: 2019/12/03 16:30:23 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 LIBFT = libft/
 
 SRCS = ./srcs/
-SRCS_FILE = main mlx_setup utilities import_map 
+SRCS_FILE = main mlx_setup utilities import_map calculate_points map_manager \
+			save_input
 
 CFILES =  $(SRCS_FILE:%=$(SRCS)%.c)
 
