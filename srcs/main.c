@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/03 15:15:48 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/04 18:52:31 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		main(int argc, char **argv)
 	mlx_setup(fdf);
 	import_map(fdf, &points, argv);
 	calculate_points(fdf, points);
+	order_list(fdf, points);
 	mlx_loop_hook(fdf->mlx_ptr, map_manager, fdf);
 	mlx_loop(fdf->mlx_ptr);
 }

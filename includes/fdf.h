@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/03 16:34:18 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/04 20:17:06 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,22 @@
 # define WIDTH	1200
 # define HEIGHT 900
 
+typedef	struct 			s_line
+{
+	double				delta_x;
+	double				delta_y;
+	double				delta_x_abs;
+	double				delta_y_abs;
+	double				error_x;
+	double				error_y;
+	double				delta_alt;
+
+}						t_line;
+
+
 typedef struct			s_events
 {
-	int					rise;
+	int					extend;
 	int					color_set;
 	int					reset;
 	int					smooth_exit;
@@ -66,7 +79,9 @@ typedef struct			s_points
 	double				y;
 	double				z;
 	int					color;
-	struct s_points		*next;
+	struct s_points		*next_x;
+	struct s_points		*next_y;
+
 }						t_points;
 
 typedef struct			s_fdf
@@ -92,6 +107,7 @@ void					mlx_setup(t_fdf *fdf);
 void					import_map(t_fdf *fdf, t_points **points, char **argv);
 void					calculate_points(t_fdf *fdf, t_points *points);
 int						map_manager(t_fdf *fdf);
+void					draw_line(t_fdf *fdf, t_points start, t_points end);
 
 int						key_press(int key_code, t_fdf *fdf);
 int						mouse_release(int button, int x, int y, t_fdf *fdf);
@@ -99,5 +115,7 @@ int						mouse_press(int button, int x, int y, t_fdf *fdf);
 int						mouse_move(int x, int y, t_fdf *fdf);
 
 t_fdf					*fdf_init(void);
+void					order_list(t_fdf *fdf, t_points *points);
+void					swap_points(t_points *a, t_points *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/03 12:33:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/04 18:40:59 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static t_points		*lst_addback(t_points **points,
 		*points = alt;
 		return (*points);
 	}
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = alt;
+	while (temp->next_x != NULL)
+		temp = temp->next_x;
+	temp->next_x = alt;
 	return (*points);
 }
 
@@ -57,7 +57,7 @@ static t_points		*new_alt_node(char *alt_values)
 		ft_exit(MALLOC_ERR);
 	value = (int)ft_atoi(new_str[0]);
 	new_node->alt = value;
-	new_node->next = NULL;
+	new_node->next_x = NULL;
 	free_str(new_str);
 	return (new_node);
 }
@@ -96,7 +96,7 @@ void				import_map(t_fdf *fdf,
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_exit(FILE_ERR);
-	while ((ret_val = get_next_line(fd, &line)) > 0)
+	while ((ret_val = get_next_x_line(fd, &line)) > 0)
 	{
 		alt_values = ft_strsplit(line, ' ');
 		if (alt_values == NULL)
@@ -105,4 +105,5 @@ void				import_map(t_fdf *fdf,
 		fdf->map_height += 1;
 		free_str(alt_values);
 	}
+	order_list()
 }
