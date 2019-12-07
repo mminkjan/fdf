@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/04 18:40:59 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 14:29:34 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void			free_str(char **alt_values)
 	free(alt_values);
 }
 
-static t_points		*lst_addback(t_points **points,
+static void		lst_addback(t_points **points,
 						t_points *alt)
 {
 	t_points *temp;
@@ -35,12 +35,13 @@ static t_points		*lst_addback(t_points **points,
 	if (temp == NULL)
 	{
 		*points = alt;
-		return (*points);
+		return ;
 	}
 	while (temp->next_x != NULL)
+	{
 		temp = temp->next_x;
+	}
 	temp->next_x = alt;
-	return (*points);
 }
 
 static t_points		*new_alt_node(char *alt_values)
@@ -71,15 +72,15 @@ static void			line_extract(t_points **points,
 	length = 0;
 	while (*alt_values)
 	{
-		(*points) = lst_addback(&(*points), new_alt_node(*(alt_values)));
+		lst_addback(points, new_alt_node(*(alt_values)));
 		alt_values++;
 		length++;
 	}
-	if (fdf->map_width == 0)
-		fdf->map_width = length;
+	if (fdf->max_x == 0)
+		fdf->max_x = length;
 	else
 	{
-		if (fdf->map_width != length)
+		if (fdf->max_x != length)
 			ft_exit(INVAL_ERR);
 	}
 }
@@ -96,14 +97,13 @@ void				import_map(t_fdf *fdf,
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_exit(FILE_ERR);
-	while ((ret_val = get_next_x_line(fd, &line)) > 0)
+	while ((ret_val = get_next_line(fd, &line)) > 0)
 	{
 		alt_values = ft_strsplit(line, ' ');
 		if (alt_values == NULL)
 			ft_exit(MALLOC_ERR);
 		line_extract(points, alt_values, fdf);
-		fdf->map_height += 1;
+		fdf->max_y += 1;
 		free_str(alt_values);
 	}
-	order_list()
 }

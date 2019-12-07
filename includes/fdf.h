@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/04 20:17:06 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 15:08:47 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@
 # define TWO 19
 # define THREE 20
 
+# define PI 3.14159265359
+
 # define WIDTH	1200
 # define HEIGHT 900
 
-typedef	struct 			s_line
+typedef	struct			s_line
 {
 	double				delta_x;
 	double				delta_y;
@@ -56,7 +58,6 @@ typedef	struct 			s_line
 
 }						t_line;
 
-
 typedef struct			s_events
 {
 	int					extend;
@@ -67,8 +68,8 @@ typedef struct			s_events
 	int					rot_y;
 	int					rot_z;
 	int					mouse_press;
-	int					move_x;
-	int					move_y;
+	double				move_x;
+	double				move_y;
 	int					zoom;
 }						t_events;
 
@@ -93,19 +94,21 @@ typedef struct			s_fdf
 	char				*addr_str;
 	int					bpp;
 	int					size_line;
-	int					map_width;
-	int					map_height;
+	double				max_x;
+	double				max_y;
+	double				map_width;
+	double				map_height;
 	double				tile_size;
 	double				alt_max;
 	double				alt_min;
 	t_points			*points;
-	t_events			*events;
+	t_events			events;
 }						t_fdf;
 
 int						main(int argc, char **argv);
 void					mlx_setup(t_fdf *fdf);
 void					import_map(t_fdf *fdf, t_points **points, char **argv);
-void					calculate_points(t_fdf *fdf, t_points *points);
+void					calculate_points(t_fdf *fdf, t_points **points);
 int						map_manager(t_fdf *fdf);
 void					draw_line(t_fdf *fdf, t_points start, t_points end);
 
@@ -117,5 +120,7 @@ int						mouse_move(int x, int y, t_fdf *fdf);
 t_fdf					*fdf_init(void);
 void					order_list(t_fdf *fdf, t_points *points);
 void					swap_points(t_points *a, t_points *b);
+
+void					iso_projection(t_points *alt_point);
 
 #endif

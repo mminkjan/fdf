@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/04 20:14:36 by mminkjan      ########   odam.nl          #
+#    Updated: 2019/12/07 12:32:47 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 SRCS_FILE = main mlx_setup utilities import_map calculate_points map_manager \
-			save_input draw_lines
+			save_input draw_line rotate_point
 
 CFILES =  $(SRCS_FILE:%=$(SRCS)%.c)
 

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   point_rotations.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/07 15:06:11 by mminkjan      ########   odam.nl         */
+/*   Created: 2019/12/07 11:20:20 by mminkjan       #+#    #+#                */
+/*   Updated: 2019/12/07 11:27:37 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		main(int argc, char **argv)
+void	iso_projection(t_points *alt_point)
 {
-	t_fdf		*fdf;
+	double		prev_x;
+	double		prev_y;
 
-	if (argc != 2)
-		ft_exit(USAGE_ERR);
-	fdf = fdf_init();
-	fdf->map_name = ft_strdup(argv[1]);
-	mlx_setup(fdf);
-	import_map(fdf, fdf->points, argv);
-	calculate_points(fdf, fdf->points);
-	printf("%f - %f\n", fdf->points->x, fdf->points->y);
-	order_list(fdf, fdf->points);
-
-	mlx_loop_hook(fdf->mlx_ptr, map_manager, fdf);
-	mlx_loop(fdf->mlx_ptr);
+	prev_x = alt_point->x;
+	prev_y = alt_point->y;
+	alt_point->x = (prev_x - prev_y) * cos(30 * PI / 180);
+	alt_point->y = -alt_point->z + (prev_x + prev_y) * sin(30 * PI / 180);
 }
