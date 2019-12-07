@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 15:07:16 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/07 14:55:36 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 15:15:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int				mouse_move(int x,
 					int y,
 					t_fdf *fdf)
 {
-
 	if (fdf->events.mouse_press == 1)
 	{
 		fdf->events.move_x = WIDTH / 2 - x;

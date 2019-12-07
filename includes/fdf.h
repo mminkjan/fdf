@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/07 15:08:47 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 15:41:30 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct			s_fdf
 	double				max_y;
 	double				map_width;
 	double				map_height;
-	double				tile_size;
+	int					tile_size;
 	double				alt_max;
 	double				alt_min;
 	t_points			*points;
@@ -108,7 +108,7 @@ typedef struct			s_fdf
 int						main(int argc, char **argv);
 void					mlx_setup(t_fdf *fdf);
 void					import_map(t_fdf *fdf, t_points **points, char **argv);
-void					calculate_points(t_fdf *fdf, t_points **points);
+void					calculate_points(t_fdf *fdf, t_points *points);
 int						map_manager(t_fdf *fdf);
 void					draw_line(t_fdf *fdf, t_points start, t_points end);
 

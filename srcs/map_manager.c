@@ -6,9 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/07 15:02:12 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 15:23:59 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/fdf.h"
 
 #include "../includes/fdf.h"
 
@@ -16,7 +18,6 @@ void		center_point(t_fdf *fdf, t_points *alt_point)
 {
 	fdf->events.move_x = 0;
 	fdf->events.move_y = 0;
-
 	alt_point->x += WIDTH / 2 - fdf->events.move_x;
 	alt_point->y += HEIGHT / 2 - fdf->events.move_y;
 }
@@ -50,7 +51,6 @@ void	print_lines(t_fdf *fdf)
 	t_points	*point = fdf->points;
 
 	y = 0;
-	// printf("%f\n", point->alt);
 	while (point != NULL)
 	{
 		x = 0;
@@ -77,7 +77,6 @@ int		map_manager(t_fdf *fdf)
 	mlx_hook(fdf->window_ptr, 4, 0, mouse_press, fdf);
 	mlx_hook(fdf->window_ptr, 5, 0, mouse_release, fdf);
 	mlx_hook(fdf->window_ptr, 6, 0, mouse_move, fdf);
-	// printf("%f - %f\n", fdf->points->x, fdf->points->y);
 	print_lines(fdf);
 	mlx_put_image_to_window(fdf->mlx_ptr,
 		fdf->window_ptr, fdf->image_ptr, 0, 0);

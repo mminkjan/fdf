@@ -6,7 +6,7 @@
 /*   By: Malou <Malou@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/13 14:37:04 by Malou          #+#    #+#                */
-/*   Updated: 2019/12/07 13:56:23 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/07 15:46:18 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void		draw_y_dominant(t_fdf *fdf, t_line *line,
 		point.alt += line->delta_alt;
 		point.color = 0xffffff;
 		// point.color = get_color(fdf, point.alt);
-		printf("points: %f, %f\n", point.x, point.y);
 		put_pixel(fdf, point);
 		point.y++;
 	}
@@ -83,7 +82,6 @@ static void		draw_x_dominant(t_fdf *fdf, t_line *line,
 		point.alt += line->delta_alt;
 		point.color = 0xffffff;
 		// point.color = get_color(fdf, point.alt);
-		printf("points: %f, %f\n", point.x, point.y);
 		put_pixel(fdf, point);
 		point.x++;
 	}
