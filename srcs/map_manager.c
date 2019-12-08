@@ -6,11 +6,9 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/07 15:23:59 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/08 13:02:21 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../includes/fdf.h"
 
 #include "../includes/fdf.h"
 
@@ -38,8 +36,12 @@ t_points	alt_point(t_fdf *fdf, t_points *point)
 	// 	event_extend(event->extend, alt_point);
 	// if (event->zoom != 0)
 	// 	event_zoom(event->zoom, alt_point);
+	// printf("before\n");
+	// printf("%f, %f\n", alt_point->x, alt_point->y);
 	iso_projection(alt_point);
 	center_point(fdf, alt_point);
+	// printf("after\n");
+	// printf("%f, %f\n", alt_point->x, alt_point->y);
 	return (*alt_point);
 }
 

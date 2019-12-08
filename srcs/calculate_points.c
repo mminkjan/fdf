@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/07 15:56:20 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/08 12:55:41 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void		define_points(t_fdf *fdf,
 			points->x = fdf->tile_size * x;
 			points->y = fdf->tile_size * y;
 			points->z = fdf->tile_size / delta_altitude * points->alt;
+			set_offset(fdf, points); // moved here
 			points = points->next_x;
 			x++;
 		}
@@ -79,10 +80,9 @@ static void		define_map_dimensions(t_fdf *fdf,
 	define_altitude(fdf, points);
 }
 
-void		calculate_points(t_fdf *fdf,
-				t_points *points)
+void			calculate_points(t_fdf *fdf,
+					t_points *points)
 {
 	define_map_dimensions(fdf, points);
 	define_points(fdf, points);
-	set_offset(fdf, points);
 }

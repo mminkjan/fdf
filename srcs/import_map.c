@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/07 14:29:34 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/08 10:37:13 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void			free_str(char **alt_values)
 	free(alt_values);
 }
 
-static void		lst_addback(t_points **points,
+static void			lst_addback(t_points **points,
 						t_points *alt)
 {
 	t_points *temp;
