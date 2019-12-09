@@ -6,18 +6,18 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/08 12:55:41 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/09 17:49:14 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void		set_offset(t_fdf *fdf,
-					t_points *points)
-{
-	points->x -= (fdf->map_width / 2);
-	points->y -= (fdf->map_height / 2);
-}
+// static void		set_offset(t_fdf *fdf,
+// 					t_points *points)
+// {
+// 	points->x -= (fdf->map_width / 2);
+// 	points->y -= (fdf->map_height / 2);
+// }
 
 static void		define_points(t_fdf *fdf,
 					t_points *points)
@@ -37,10 +37,12 @@ static void		define_points(t_fdf *fdf,
 		x = 0;
 		while (x < fdf->max_x)
 		{
-			points->x = fdf->tile_size * x;
-			points->y = fdf->tile_size * y;
-			points->z = fdf->tile_size / delta_altitude * points->alt;
-			set_offset(fdf, points); // moved here
+			points->x = fdf->tile_size * x - (fdf->map_width / 2);
+			points->y = fdf->tile_size * y - (fdf->map_height / 2);
+			if (points->alt != 0)
+				points->z = fdf->tile_size / delta_altitude * points->alt;
+			else
+				points->z = 0;
 			points = points->next_x;
 			x++;
 		}
@@ -59,9 +61,9 @@ static void		define_altitude(t_fdf *fdf,
 	fdf->alt_min = points->alt;
 	while (points != NULL)
 	{
-		if (head->alt > fdf->alt_max)
+		if (points->alt > fdf->alt_max)
 			fdf->alt_max = points->alt;
-		if (head->alt < fdf->alt_min)
+		if (points->alt < fdf->alt_min)
 			fdf->alt_min = points->alt;
 		points = points->next_x;
 	}
@@ -80,8 +82,8 @@ static void		define_map_dimensions(t_fdf *fdf,
 	define_altitude(fdf, points);
 }
 
-void			calculate_points(t_fdf *fdf,
-					t_points *points)
+void		calculate_points(t_fdf *fdf,
+				t_points *points)
 {
 	define_map_dimensions(fdf, points);
 	define_points(fdf, points);

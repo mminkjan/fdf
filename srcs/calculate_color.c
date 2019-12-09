@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mlx_setup.c                                        :+:    :+:            */
+/*   calculate_color.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/02 18:16:17 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/09 10:45:44 by mminkjan      ########   odam.nl         */
+/*   Created: 2019/12/09 16:20:17 by mminkjan       #+#    #+#                */
+/*   Updated: 2019/12/09 16:25:39 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	mlx_setup(t_fdf *fdf)
+int		get_color(t_fdf *fdf, double altitude)
 {
-	int		endian;
-
-	endian = 0;
-	fdf->mlx_ptr = mlx_init();
-	fdf->window_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGHT,
-	fdf->map_name);
-	fdf->image_ptr = mlx_new_image(fdf->mlx_ptr, WIDTH, HEIGHT);
-	fdf->addr_str = mlx_get_data_addr(fdf->image_ptr, &fdf->bpp,
-	&fdf->size_line, &endian);
+	(void)fdf;
+	(void)altitude;
+	return (0xffffff);
 }

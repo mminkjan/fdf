@@ -6,7 +6,7 @@
 /*   By: Malou <Malou@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/13 14:37:04 by Malou          #+#    #+#                */
-/*   Updated: 2019/12/07 15:46:18 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/09 17:29:45 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void		draw_y_dominant(t_fdf *fdf, t_line *line,
 {
 	t_points point;
 
-	point = start;
-	line->delta_alt = ((float)end.alt -
-	(float)start.alt) / (float)line->delta_y_abs;
+	point.x = (int)start.x;
+	point.y = (int)start.y;
+	line->delta_alt = (end.alt - start.alt) / line->delta_y_abs;
 	point.alt = start.alt;
 	while (point.y < end.y)
 	{
@@ -51,8 +51,7 @@ static void		draw_y_dominant(t_fdf *fdf, t_line *line,
 			line->error_y += 2 * (line->delta_x_abs - line->delta_y_abs);
 		}
 		point.alt += line->delta_alt;
-		point.color = 0xffffff;
-		// point.color = get_color(fdf, point.alt);
+		point.color = get_color(fdf, point.alt);
 		put_pixel(fdf, point);
 		point.y++;
 	}
@@ -63,7 +62,8 @@ static void		draw_x_dominant(t_fdf *fdf, t_line *line,
 {
 	t_points point;
 
-	point = start;
+	point.x = (int)start.x;
+	point.y = (int)start.y;
 	line->delta_alt = (end.alt - start.alt) / line->delta_x_abs;
 	point.alt = start.alt;
 	while (point.x < end.x)
@@ -80,8 +80,7 @@ static void		draw_x_dominant(t_fdf *fdf, t_line *line,
 			line->error_x += 2 * (line->delta_y_abs - line->delta_x_abs);
 		}
 		point.alt += line->delta_alt;
-		point.color = 0xffffff;
-		// point.color = get_color(fdf, point.alt);
+		point.color = get_color(fdf, point.alt);
 		put_pixel(fdf, point);
 		point.x++;
 	}

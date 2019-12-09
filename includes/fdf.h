@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/07 15:41:30 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/09 17:41:50 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 
 # define PI 3.14159265359
 
-# define WIDTH	1200
-# define HEIGHT 900
+# define WIDTH	1900
+# define HEIGHT 1200
 
 typedef	struct			s_line
 {
@@ -79,7 +79,7 @@ typedef struct			s_points
 	double				x;
 	double				y;
 	double				z;
-	int					color;
+	int  				color;
 	struct s_points		*next_x;
 	struct s_points		*next_y;
 
@@ -111,6 +111,7 @@ void					import_map(t_fdf *fdf, t_points **points, char **argv);
 void					calculate_points(t_fdf *fdf, t_points *points);
 int						map_manager(t_fdf *fdf);
 void					draw_line(t_fdf *fdf, t_points start, t_points end);
+int						get_color(t_fdf *fdf, double altitude);
 
 int						key_press(int key_code, t_fdf *fdf);
 int						mouse_release(int button, int x, int y, t_fdf *fdf);

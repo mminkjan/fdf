@@ -6,13 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/08 13:02:21 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/09 17:26:52 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		center_point(t_fdf *fdf, t_points *alt_point)
+void	center_point(t_fdf *fdf, t_points *alt_point)
 {
 	fdf->events.move_x = 0;
 	fdf->events.move_y = 0;
@@ -22,10 +22,12 @@ void		center_point(t_fdf *fdf, t_points *alt_point)
 
 t_points	alt_point(t_fdf *fdf, t_points *point)
 {
-	t_points *alt_point;
+	t_points alt_point;
 	// t_events *event = fdf->events;
 
-	alt_point = point;
+	alt_point = *point;
+
+	(void)fdf;
 	// if (event->rot_x != 0)
 	// 	event_rot_x(event->rot_x, alt_point);
 	// if (event->rot_y != 0)
@@ -36,20 +38,20 @@ t_points	alt_point(t_fdf *fdf, t_points *point)
 	// 	event_extend(event->extend, alt_point);
 	// if (event->zoom != 0)
 	// 	event_zoom(event->zoom, alt_point);
-	// printf("before\n");
-	// printf("%f, %f\n", alt_point->x, alt_point->y);
-	iso_projection(alt_point);
-	center_point(fdf, alt_point);
+	// printf("before	= %f - %f - %f\n", alt_point.x, alt_point.y, alt_point.z);
+	iso_projection(&alt_point);
+	// printf("after	= %f - %f - %f\n", alt_point.x, alt_point.y, alt_point.z);
+	center_point(fdf, &alt_point);
 	// printf("after\n");
 	// printf("%f, %f\n", alt_point->x, alt_point->y);
-	return (*alt_point);
+	return (alt_point);
 }
 
 void	print_lines(t_fdf *fdf)
 {
 	int			x;
 	int			y;
-	t_points	*start;
+	t_points	start;
 	t_points	*point = fdf->points;
 
 	y = 0;
@@ -58,14 +60,11 @@ void	print_lines(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->max_x)
 		{
-			start = point;
-			alt_point(fdf, start);
+			start = alt_point(fdf, point);
 			if (x + 1 < fdf->max_x)
-			{
-				draw_line(fdf, *start, alt_point(fdf, start->next_x));
-			}
+				draw_line(fdf, start, alt_point(fdf, point->next_x));
 			if (y + 1 < fdf->max_y)
-				draw_line(fdf, *start, alt_point(fdf, start->next_y));
+				draw_line(fdf, start, alt_point(fdf, point->next_y));
 			point = point->next_x;
 			x++;
 		}
