@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/08 10:37:13 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 18:45:29 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ void				import_map(t_fdf *fdf,
 		line_extract(points, alt_values, fdf);
 		fdf->max_y += 1;
 		free_str(alt_values);
+		free(line);
 	}
 }

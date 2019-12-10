@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 15:07:16 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 16:26:16 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 18:10:01 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int				mouse_move(int x,
 {
 	if (fdf->events.mouse_press == 1)
 	{
-		fdf->events.move_x = WIDTH / 2 - x;
-		fdf->events.move_y = HEIGHT / 2 - y;
+		fdf->events.move_x = (fdf->map_width / 2) + (WIDTH / 2) - x;
+		fdf->events.move_y = ((fdf->map_height / 2) - 400) + (HEIGHT / 2) - y;
 	}
 	return (0);
 }

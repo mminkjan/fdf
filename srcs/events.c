@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/10 13:17:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 16:42:11 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 17:10:31 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ void	event_extend(double extend, t_points *alt_point)
 
 void	event_reset(t_events *event)
 {
-	printf("yasss\n");
-	event->reset = 0;
-	event->extend = 0.0;
+	ft_bzero(event, sizeof(t_events));
 	event->color_set = 1;
-	event->rot_x = 0;
-	event->rot_y = 0;
-	event->rot_z = 0;
-	event->move_x = 0.0;
-	event->move_y = 0.0;
-	event->zoom = 0.0;
 }

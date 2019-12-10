@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 16:50:26 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 17:28:33 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,23 @@ void	center_point(t_fdf *fdf, t_points *alt_point)
 t_points	alt_point(t_fdf *fdf, t_points *point)
 {
 	t_points alt_point;
-	t_events event = fdf->events;
+	t_events *event = &fdf->events;
 
 	alt_point = *point;
-	if (event.reset == 1)
+	if (event->reset == 1)
 	{
-		event_reset(&event);
-
+		event_reset(event);
 	}
-	if (event.rot_x != 0)
-		event_rot_x(event.rot_x, &alt_point);
-	if (event.rot_y != 0)
-		event_rot_y(event.rot_y, &alt_point);
-	if (event.rot_z != 0)
-		event_rot_z(event.rot_z, &alt_point);
-	if (event.extend != 0)
-		event_extend(event.extend, &alt_point);
-	if (event.zoom != 0)
-		event_zoom(event.zoom, &alt_point);
+	if (event->rot_x != 0)
+		event_rot_x(event->rot_x, &alt_point);
+	if (event->rot_y != 0)
+		event_rot_y(event->rot_y, &alt_point);
+	if (event->rot_z != 0)
+		event_rot_z(event->rot_z, &alt_point);
+	if (event->extend != 0)
+		event_extend(event->extend, &alt_point);
+	if (event->zoom != 0)
+		event_zoom(event->zoom, &alt_point);
 	iso_projection(&alt_point);
 	center_point(fdf, &alt_point);
 	return (alt_point);
@@ -52,15 +51,12 @@ void	print_lines(t_fdf *fdf)
 	t_points	*point = fdf->points;
 
 	y = 0;
-	printf("befor = %d\n", fdf->events.reset);
-	// sleep(3);
 	while (point != NULL)
 	{
 		x = 0;
 		while (x < fdf->max_x)
 		{
 			start = alt_point(fdf, point);
-			printf("after = %d\n", fdf->events.reset);
 			if (x + 1 < fdf->max_x)
 				draw_line(fdf, start, alt_point(fdf, point->next_x));
 			if (y + 1 < fdf->max_y)
@@ -80,7 +76,7 @@ int		map_manager(t_fdf *fdf)
 	mlx_hook(fdf->window_ptr, 6, 0, mouse_move, fdf);
 	print_lines(fdf);
 	mlx_put_image_to_window(fdf->mlx_ptr,
-		fdf->window_ptr, fdf->image_ptr, 0, 0);
+		fdf->window_ptr, fdf->image_ptr, 400, 0);
 	ft_bzero(fdf->addr_str, (fdf->bpp / 8) * WIDTH * HEIGHT);
 	return (0);
 }

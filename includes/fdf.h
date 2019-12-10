@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 16:24:55 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 17:26:33 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,7 @@ void					iso_projection(t_points *alt_point);
 void					event_zoom(double zoom, t_points *alt_point);
 void					event_extend(double extend, t_points *alt_point);
 void					event_reset(t_events *event);
+
+void					print_interface(t_fdf *fdf);
 
 #endif
