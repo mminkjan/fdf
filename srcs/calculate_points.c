@@ -6,79 +6,50 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 15:35:57 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 19:54:25 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+static void		define_loop(t_fdf *fdf,
+					t_points *points,
+					double delta_altitude,
+					t_points position)
+{
+	points->x = fdf->tile_size * (int)position.x - (fdf->map_width / 2);
+	points->y = fdf->tile_size * (int)position.y - (fdf->map_height / 2);
+	if (points->alt != 0)
+		points->z = fdf->tile_size / delta_altitude * points->alt;
+	else
+		points->z = 0;
+}
+
 static void		define_points(t_fdf *fdf,
 					t_points *points)
 {
-	int			x;
-	int			y;
+	t_points	position;
 	double		delta_altitude;
 	t_points	*head;
 
-	y = 0;
+	position.y = 0;
 	head = points;
 	delta_altitude = fdf->alt_max - fdf->alt_min;
 	if (delta_altitude < 0)
 		delta_altitude = abs((int)delta_altitude);
 	while (points != NULL)
 	{
-		x = 0;
-		while (x < fdf->max_x)
+		position.x = 0;
+		while (position.x < fdf->max_x)
 		{
-			points->x = fdf->tile_size * x - (fdf->map_width / 2);
-			points->y = fdf->tile_size * y - (fdf->map_height / 2);
-			if (points->alt != 0)
-				points->z = fdf->tile_size / delta_altitude * points->alt;
-			else
-				points->z = 0;
+			define_loop(fdf, points, delta_altitude, position);
 			points = points->next_x;
-			x++;
+			position.x++;
 		}
-		y++;
+		position.y++;
 	}
 	points = head;
 }
-
-// static void		define_mode(t_fdf *fdf, t_points *points, int map_size)
-// {
-// 	int			index;
-// 	int			altitude;
-// 	int			count;
-// 	int			max_count;
-// 	t_points	*head;
-
-// 	max_count = 0;
-// 	head = points;
-// 	while (points != NULL)
-// 	{
-// 		index = 0;
-// 		count = 0;
-// 		altitude = points->alt;
-// 		while (index < map_size)
-// 		{
-// 			points = points->next_x;
-// 			if (points->alt == altitude)
-// 				count++;
-// 			index++;
-// 		}
-// 		if (count > max_count)
-// 		{
-// 			fdf->alt_mode = points->alt;
-// 			max_count = count;
-// 		}
-// 		points = head;
-// 		while (points->alt == altitude || index == map_size)
-// 		{
-// 			points = points->next_x;
-// 			map_size--;
-// 		}
-// 	}
-// }
 
 static void		define_altitude(t_fdf *fdf,
 					t_points *points)
@@ -96,7 +67,6 @@ static void		define_altitude(t_fdf *fdf,
 			fdf->alt_min = points->alt;
 		points = points->next_x;
 	}
-	// define_mode(fdf, points, fdf->max_x * fdf->max_y);
 	points = head;
 }
 
@@ -112,8 +82,8 @@ static void		define_map_dimensions(t_fdf *fdf,
 	define_altitude(fdf, points);
 }
 
-void		calculate_points(t_fdf *fdf,
-				t_points *points)
+void			calculate_points(t_fdf *fdf,
+					t_points *points)
 {
 	define_map_dimensions(fdf, points);
 	define_points(fdf, points);

@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/10 17:26:56 by jesmith       ########   odam.nl          #
+#    Updated: 2019/12/10 20:00:30 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ all : $(NAME)
 
 $(NAME) :
 	@make re -C $(LIBFT)
-	@gcc -I $(MLX) -L $(MLX) $(MLXFLAGS) -I $(LIBFT) -L $(LIBFT) -lft $(CFILES) \
-	$(FLAGS) $(NAME)
+	@gcc -I $(MLX) -L $(MLX) $(MLXFLAGS) -I $(LIBFT) -L $(LIBFT) -lft \
+	$(CFILES) $(FLAGS) $(NAME)
 
 clean :
 	@make clean -C $(LIBFT)
@@ -60,7 +60,7 @@ push :
 ifdef MSG
 	@ git commit -m "$(MSG)"
 	@ git push -u origin
-	# @ git push -u gitt
+
 else 
     @ echo "usage ex: make push MSG="<message>"
 endif

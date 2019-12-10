@@ -6,13 +6,13 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/07 11:20:20 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 12:54:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 19:54:48 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		event_rot_x(int pos, t_points *alt_point)
+void	event_rot_x(int pos, t_points *alt_point)
 {
 	int		prev_y;
 	int		prev_z;

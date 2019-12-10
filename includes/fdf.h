@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 17:26:33 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 19:56:03 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include "../minilibx_macos/mlx.h"
 # include <fcntl.h>
 # include <math.h>
-
-# include <stdio.h> // delete later!
 
 # define USAGE_ERR	"usage error: input valid map\n"
 # define FILE_ERR	"error: opening file\n"
@@ -31,6 +29,7 @@
 # define Q 12
 # define D 2
 # define A 0
+# define I 34
 # define PLUS 24
 # define MIN 27
 # define ESC 53
@@ -41,6 +40,7 @@
 # define TWO 19
 # define THREE 20
 # define FOUR 21
+# define ZERO 29
 
 # define ONE_START 0x000084
 # define ONE_END 0x1cb5e0
@@ -77,6 +77,8 @@ typedef struct			s_events
 	int					rot_x;
 	int					rot_y;
 	int					rot_z;
+	int					iso;
+	int					top;
 	int					mouse_press;
 	double				move_x;
 	double				move_y;

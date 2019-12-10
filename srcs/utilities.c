@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:01:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 16:10:03 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 19:29:11 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_fdf			*fdf_init(void)
 		ft_exit(USAGE_ERR);
 	ft_bzero(fdf, sizeof(t_fdf));
 	fdf->events.color_set = 1;
+	fdf->events.iso = 1;
 	return (fdf);
 }

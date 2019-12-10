@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/14 11:16:37 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/02 17:40:58 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/10 19:01:31 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFF_SIZE 10
+# define BUFF_SIZE 100
 
 typedef struct		s_list
 {

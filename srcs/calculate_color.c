@@ -6,18 +6,18 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 16:20:17 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 12:23:25 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/10 19:57:40 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int			get_bit_value(int start, int end, double percentage)
+static int			get_bit_value(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-void		set_color(t_color *color, t_events events)
+static void			set_color(t_color *color, t_events events)
 {
 	if (events.color_set == 1)
 	{
@@ -41,7 +41,7 @@ void		set_color(t_color *color, t_events events)
 	}
 }
 
-double		percentage(double start, double current, double end)
+static double		percentage(double start, double current, double end)
 {
 	double placement;
 	double distance;
@@ -51,7 +51,7 @@ double		percentage(double start, double current, double end)
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
 
-int		get_color(t_fdf *fdf, double altitude)
+int					get_color(t_fdf *fdf, double altitude)
 {
 	double	percent;
 	t_color	color = fdf->color;
