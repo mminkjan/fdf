@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/09 17:41:50 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/10 16:24:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@
 # define ONE 18
 # define TWO 19
 # define THREE 20
+# define FOUR 21
+
+# define ONE_START 0x000084
+# define ONE_END 0x1cb5e0
+# define TWO_START 0x304352
+# define TWO_END 0xd7d2cc
+# define THREE_START 0xdc2424
+# define THREE_END 0x4a569d
+# define FOUR_START 0xe55d87
+# define FOUR_END 0x5fc3e4
 
 # define PI 3.14159265359
 
@@ -60,9 +70,9 @@ typedef	struct			s_line
 
 typedef struct			s_events
 {
-	int					extend;
-	int					color_set;
 	int					reset;
+	double				extend;
+	int					color_set;
 	int					smooth_exit;
 	int					rot_x;
 	int					rot_y;
@@ -70,8 +80,14 @@ typedef struct			s_events
 	int					mouse_press;
 	double				move_x;
 	double				move_y;
-	int					zoom;
+	double				zoom;
 }						t_events;
+
+typedef struct			s_color
+{
+	int					start;
+	int					end;
+}						t_color;
 
 typedef struct			s_points
 {
@@ -79,7 +95,7 @@ typedef struct			s_points
 	double				x;
 	double				y;
 	double				z;
-	int  				color;
+	int					color;
 	struct s_points		*next_x;
 	struct s_points		*next_y;
 
@@ -101,7 +117,9 @@ typedef struct			s_fdf
 	int					tile_size;
 	double				alt_max;
 	double				alt_min;
+	double				alt_mode;
 	t_points			*points;
+	t_color				color;
 	t_events			events;
 }						t_fdf;
 
@@ -122,6 +140,13 @@ t_fdf					*fdf_init(void);
 void					order_list(t_fdf *fdf, t_points *points);
 void					swap_points(t_points *a, t_points *b);
 
+void					event_rot_x(int pos, t_points *alt_point);
+void					event_rot_y(int pos, t_points *alt_point);
+void					event_rot_z(int pos, t_points *alt_point);
 void					iso_projection(t_points *alt_point);
+
+void					event_zoom(double zoom, t_points *alt_point);
+void					event_extend(double extend, t_points *alt_point);
+void					event_reset(t_events *event);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/09 17:26:52 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/10 16:50:26 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	center_point(t_fdf *fdf, t_points *alt_point)
 {
-	fdf->events.move_x = 0;
-	fdf->events.move_y = 0;
 	alt_point->x += WIDTH / 2 - fdf->events.move_x;
 	alt_point->y += HEIGHT / 2 - fdf->events.move_y;
 }
@@ -23,27 +21,26 @@ void	center_point(t_fdf *fdf, t_points *alt_point)
 t_points	alt_point(t_fdf *fdf, t_points *point)
 {
 	t_points alt_point;
-	// t_events *event = fdf->events;
+	t_events event = fdf->events;
 
 	alt_point = *point;
+	if (event.reset == 1)
+	{
+		event_reset(&event);
 
-	(void)fdf;
-	// if (event->rot_x != 0)
-	// 	event_rot_x(event->rot_x, alt_point);
-	// if (event->rot_y != 0)
-	// 	event_rot_y(event->rot_y, alt_point);
-	// if (event->rot_z != 0)
-	// 	event_rot_z(event->rot_z, alt_point);
-	// if (event->extend != 0)
-	// 	event_extend(event->extend, alt_point);
-	// if (event->zoom != 0)
-	// 	event_zoom(event->zoom, alt_point);
-	// printf("before	= %f - %f - %f\n", alt_point.x, alt_point.y, alt_point.z);
+	}
+	if (event.rot_x != 0)
+		event_rot_x(event.rot_x, &alt_point);
+	if (event.rot_y != 0)
+		event_rot_y(event.rot_y, &alt_point);
+	if (event.rot_z != 0)
+		event_rot_z(event.rot_z, &alt_point);
+	if (event.extend != 0)
+		event_extend(event.extend, &alt_point);
+	if (event.zoom != 0)
+		event_zoom(event.zoom, &alt_point);
 	iso_projection(&alt_point);
-	// printf("after	= %f - %f - %f\n", alt_point.x, alt_point.y, alt_point.z);
 	center_point(fdf, &alt_point);
-	// printf("after\n");
-	// printf("%f, %f\n", alt_point->x, alt_point->y);
 	return (alt_point);
 }
 
@@ -55,12 +52,15 @@ void	print_lines(t_fdf *fdf)
 	t_points	*point = fdf->points;
 
 	y = 0;
+	printf("befor = %d\n", fdf->events.reset);
+	// sleep(3);
 	while (point != NULL)
 	{
 		x = 0;
 		while (x < fdf->max_x)
 		{
 			start = alt_point(fdf, point);
+			printf("after = %d\n", fdf->events.reset);
 			if (x + 1 < fdf->max_x)
 				draw_line(fdf, start, alt_point(fdf, point->next_x));
 			if (y + 1 < fdf->max_y)
@@ -81,6 +81,6 @@ int		map_manager(t_fdf *fdf)
 	print_lines(fdf);
 	mlx_put_image_to_window(fdf->mlx_ptr,
 		fdf->window_ptr, fdf->image_ptr, 0, 0);
-	ft_bzero(fdf->addr_str, fdf->bpp / 8);
+	ft_bzero(fdf->addr_str, (fdf->bpp / 8) * WIDTH * HEIGHT);
 	return (0);
 }

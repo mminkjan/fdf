@@ -6,18 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/09 17:49:14 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/10 15:35:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// static void		set_offset(t_fdf *fdf,
-// 					t_points *points)
-// {
-// 	points->x -= (fdf->map_width / 2);
-// 	points->y -= (fdf->map_height / 2);
-// }
 
 static void		define_points(t_fdf *fdf,
 					t_points *points)
@@ -51,6 +44,42 @@ static void		define_points(t_fdf *fdf,
 	points = head;
 }
 
+// static void		define_mode(t_fdf *fdf, t_points *points, int map_size)
+// {
+// 	int			index;
+// 	int			altitude;
+// 	int			count;
+// 	int			max_count;
+// 	t_points	*head;
+
+// 	max_count = 0;
+// 	head = points;
+// 	while (points != NULL)
+// 	{
+// 		index = 0;
+// 		count = 0;
+// 		altitude = points->alt;
+// 		while (index < map_size)
+// 		{
+// 			points = points->next_x;
+// 			if (points->alt == altitude)
+// 				count++;
+// 			index++;
+// 		}
+// 		if (count > max_count)
+// 		{
+// 			fdf->alt_mode = points->alt;
+// 			max_count = count;
+// 		}
+// 		points = head;
+// 		while (points->alt == altitude || index == map_size)
+// 		{
+// 			points = points->next_x;
+// 			map_size--;
+// 		}
+// 	}
+// }
+
 static void		define_altitude(t_fdf *fdf,
 					t_points *points)
 {
@@ -67,6 +96,7 @@ static void		define_altitude(t_fdf *fdf,
 			fdf->alt_min = points->alt;
 		points = points->next_x;
 	}
+	// define_mode(fdf, points, fdf->max_x * fdf->max_y);
 	points = head;
 }
 

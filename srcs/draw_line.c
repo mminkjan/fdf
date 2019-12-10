@@ -6,7 +6,7 @@
 /*   By: Malou <Malou@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/13 14:37:04 by Malou          #+#    #+#                */
-/*   Updated: 2019/12/09 18:06:32 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/10 13:14:00 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		put_pixel(t_fdf *fdf, t_points point)
 	if (point.x >= 0 && point.x < WIDTH && point.y >= 0
 	&& point.y < HEIGHT)
 	{
-		index = (point.y * fdf->size_line) + (point.x * fdf->bpp / 8);
+		index = ((int)point.y * fdf->size_line) + ((int)point.x * fdf->bpp / 8);
 		fdf->addr_str[index] = point.color;
 		index++;
 		fdf->addr_str[index] = point.color >> 8;
@@ -33,8 +33,7 @@ static void		draw_y_dominant(t_fdf *fdf, t_line *line,
 {
 	t_points point;
 
-	point.x = (int)start.x;
-	point.y = (int)start.y;
+	point = start;
 	line->delta_alt = (end.alt - start.alt) / line->delta_y_abs;
 	point.alt = start.alt;
 	while (point.y < end.y)
@@ -62,8 +61,7 @@ static void		draw_x_dominant(t_fdf *fdf, t_line *line,
 {
 	t_points point;
 
-	point.x = (int)start.x;
-	point.y = (int)start.y;
+	point = start;
 	line->delta_alt = (end.alt - start.alt) / line->delta_x_abs;
 	point.alt = start.alt;
 	while (point.x < end.x)
