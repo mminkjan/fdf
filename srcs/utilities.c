@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:01:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 17:56:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 19:21:36 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ t_fdf			*fdf_init(void)
 
 void			free_structs(t_fdf *fdf)
 {
-	lst_del(&fdf->points, (void (*)(void*, size_t))&fdf->points);
+	lst_del(&fdf->points, &ft_del);
 	ft_bzero(fdf, sizeof(t_fdf));
-	free(fdf->points);
 	free(fdf);
 }

@@ -6,26 +6,25 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/11 15:08:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 17:57:00 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 19:25:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 void				lst_del(t_points **points,
-						void (*del)(void*, size_t))
+						void (ft_del)(void*, size_t))
 {
 	t_points *list;
 
+	(void)ft_del;
 	list = *points;
-	while ((*points)->next_x != NULL)
+	while ((*points)->next_x != 0)
 	{
-		del(points, sizeof(points));
 		(*points) = (*points)->next_x;
 		free(list);
 		list = (*points);
 	}
-	del(points, sizeof(points));
 	(*points) = (*points)->next_x;
 	free(list);
 	(*points) = NULL;
