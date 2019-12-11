@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/10 17:18:13 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 19:43:36 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 12:11:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			print_interface(t_fdf *fdf)
 	mlx_string_put(fdf->mlx_ptr, fdf->window_ptr, 50, 240, color,
 		"change height:    + & -\n");
 	mlx_string_put(fdf->mlx_ptr, fdf->window_ptr, 50, 270, color,
-		"change color:     1, 2, 3\n");
+		"change color:     1, 2, 3, 4, 5\n");
 	mlx_string_put(fdf->mlx_ptr, fdf->window_ptr, 50, 300, color,
 		"iso projection:   i\n");
 	mlx_string_put(fdf->mlx_ptr, fdf->window_ptr, 50, 330, color,

@@ -6,11 +6,29 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:01:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 19:29:11 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 14:37:26 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+double		percentage(t_fdf *fdf, double current)
+{
+	double placement;
+	double distance;
+
+	if (current < fdf->alt_mid)
+	{
+		placement = current - fdf->alt_min;
+		distance = fdf->alt_mid - fdf->alt_min;
+	}
+	else
+	{
+		placement = current - fdf->alt_mid;
+		distance = fdf->alt_max - fdf->alt_mid;
+	}
+	return ((distance == 0) ? 1.0 : (placement / distance));
+}
 
 void			swap_points(t_points *a, t_points *b)
 {
@@ -41,10 +59,8 @@ void			order_list(t_fdf *fdf, t_points *points)
 {
 	int			x;
 	int			y;
-	t_points	*head;
 
 	y = 1;
-	head = points;
 	while (points != NULL && y < fdf->max_y)
 	{
 		x = 0;
@@ -56,7 +72,6 @@ void			order_list(t_fdf *fdf, t_points *points)
 		}
 		y++;
 	}
-	points = head;
 }
 
 t_fdf			*fdf_init(void)

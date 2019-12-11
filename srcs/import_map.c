@@ -6,12 +6,12 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 18:45:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 15:04:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
+#include <stdio.h>
 static void			free_str(char **alt_values)
 {
 	size_t index;
@@ -38,9 +38,7 @@ static void			lst_addback(t_points **points,
 		return ;
 	}
 	while (temp->next_x != NULL)
-	{
 		temp = temp->next_x;
-	}
 	temp->next_x = alt;
 }
 
@@ -52,10 +50,17 @@ static t_points		*new_alt_node(char *alt_values)
 
 	new_node = (t_points*)ft_memalloc(sizeof(t_points));
 	if (new_node == NULL)
+	{
+		free(new_node);
 		ft_exit(MALLOC_ERR);
+	}
 	new_str = ft_strsplit(alt_values, ',');
 	if (new_str == NULL)
+	{
+		free(new_node);
+		free_str(new_str);
 		ft_exit(MALLOC_ERR);
+	}
 	value = (int)ft_atoi(new_str[0]);
 	new_node->alt = value;
 	new_node->next_x = NULL;
@@ -97,7 +102,8 @@ void				import_map(t_fdf *fdf,
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_exit(FILE_ERR);
-	while ((ret_val = get_next_line(fd, &line)) > 0)
+	ret_val = get_next_line(fd, &line);
+	while (ret_val > 0)
 	{
 		alt_values = ft_strsplit(line, ' ');
 		if (alt_values == NULL)
@@ -106,5 +112,7 @@ void				import_map(t_fdf *fdf,
 		fdf->max_y += 1;
 		free_str(alt_values);
 		free(line);
+		ret_val = get_next_line(fd, &line);
 	}
+	free(line);
 }

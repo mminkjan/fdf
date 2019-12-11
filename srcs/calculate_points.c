@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 19:54:25 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 12:17:04 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void		define_altitude(t_fdf *fdf,
 			fdf->alt_min = points->alt;
 		points = points->next_x;
 	}
+	fdf->alt_mid = (fabs(fdf->alt_max) - fabs(fdf->alt_min)) / 2;
 	points = head;
 }
 

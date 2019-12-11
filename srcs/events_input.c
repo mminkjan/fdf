@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 15:07:16 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 19:35:41 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 15:03:05 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,17 @@ static void		key_press2(int key_code,
 		fdf->events.color_set = 3;
 	if (key_code == FOUR)
 		fdf->events.color_set = 4;
+	if (key_code == FIVE)
+		fdf->events.color_set = 5;
 	if (key_code == ZERO)
 		fdf->events.iso = 0;
 	if (key_code == I)
 		fdf->events.iso = 1;
 	if (key_code == ESC)
+	{
+		// ft_free(fdf, points)
 		exit(0);
+	}
 	if (key_code == M)
 		fdf->events.smooth_exit++;
 }

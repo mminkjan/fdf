@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 19:56:03 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 14:16:01 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,28 @@
 # define TWO 19
 # define THREE 20
 # define FOUR 21
+# define FIVE 23
 # define ZERO 29
 
-# define ONE_START 0x000084
-# define ONE_END 0x1cb5e0
-# define TWO_START 0x304352
-# define TWO_END 0xd7d2cc
-# define THREE_START 0xdc2424
-# define THREE_END 0x4a569d
-# define FOUR_START 0xe55d87
-# define FOUR_END 0x5fc3e4
+# define ONE_START 0x8A2387
+# define ONE_MIDDLE 0xE94057
+# define ONE_END 0xF27121
+
+# define TWO_START 0x1a2a6c
+# define TWO_MIDDLE 0xb21f1f
+# define TWO_END 0xfdbb2d
+
+# define THREE_START 0x00E8FF
+# define THREE_MIDDLE 0x00E8FF
+# define THREE_END 0xF34EE5
+
+# define FOUR_START 0x1E9600
+# define FOUR_MIDDLE 0xFFF200
+# define FOUR_END 0xFF0000
+
+# define FIVE_START 0x2e2b8c
+# define FIVE_MIDDLE 0xcbfafe
+# define FIVE_END 0x6c77aa
 
 # define PI 3.14159265359
 
@@ -100,7 +112,6 @@ typedef struct			s_points
 	int					color;
 	struct s_points		*next_x;
 	struct s_points		*next_y;
-
 }						t_points;
 
 typedef struct			s_fdf
@@ -119,7 +130,7 @@ typedef struct			s_fdf
 	int					tile_size;
 	double				alt_max;
 	double				alt_min;
-	double				alt_mode;
+	double				alt_mid;
 	t_points			*points;
 	t_color				color;
 	t_events			events;
@@ -141,6 +152,7 @@ int						mouse_move(int x, int y, t_fdf *fdf);
 t_fdf					*fdf_init(void);
 void					order_list(t_fdf *fdf, t_points *points);
 void					swap_points(t_points *a, t_points *b);
+double					percentage(t_fdf *fdf, double current);
 
 void					event_rot_x(int pos, t_points *alt_point);
 void					event_rot_y(int pos, t_points *alt_point);
