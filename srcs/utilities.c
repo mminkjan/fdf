@@ -6,13 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:01:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 14:37:26 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 17:56:12 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-double		percentage(t_fdf *fdf, double current)
+double			percentage(t_fdf *fdf, double current)
 {
 	double placement;
 	double distance;
@@ -39,41 +39,6 @@ void			swap_points(t_points *a, t_points *b)
 	*b = hold;
 }
 
-static t_points	*iterate_list(t_points *points, int next_y)
-{
-	int			index;
-	t_points	*temp;
-
-	index = 0;
-	temp = points;
-	while (index < next_y)
-	{
-		temp = temp->next_x;
-		index++;
-	}
-	temp->next_y = temp;
-	return (temp);
-}
-
-void			order_list(t_fdf *fdf, t_points *points)
-{
-	int			x;
-	int			y;
-
-	y = 1;
-	while (points != NULL && y < fdf->max_y)
-	{
-		x = 0;
-		while (x < fdf->max_x)
-		{
-			points->next_y = iterate_list(points, fdf->max_x);
-			points = points->next_x;
-			x++;
-		}
-		y++;
-	}
-}
-
 t_fdf			*fdf_init(void)
 {
 	t_fdf		*fdf;
@@ -85,4 +50,12 @@ t_fdf			*fdf_init(void)
 	fdf->events.color_set = 1;
 	fdf->events.iso = 1;
 	return (fdf);
+}
+
+void			free_structs(t_fdf *fdf)
+{
+	lst_del(&fdf->points, (void (*)(void*, size_t))&fdf->points);
+	ft_bzero(fdf, sizeof(t_fdf));
+	free(fdf->points);
+	free(fdf);
 }

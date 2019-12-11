@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 14:16:01 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 17:41:52 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,13 @@ int						mouse_press(int button, int x, int y, t_fdf *fdf);
 int						mouse_move(int x, int y, t_fdf *fdf);
 
 t_fdf					*fdf_init(void);
-void					order_list(t_fdf *fdf, t_points *points);
 void					swap_points(t_points *a, t_points *b);
 double					percentage(t_fdf *fdf, double current);
+void					free_structs(t_fdf *fdf);
+
+void					order_list(t_fdf *fdf, t_points *points);
+void					lst_del(t_points **points, \
+							void (*del)(void*, size_t));
 
 void					event_rot_x(int pos, t_points *alt_point);
 void					event_rot_y(int pos, t_points *alt_point);

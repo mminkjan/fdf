@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 15:07:16 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 15:03:05 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 17:57:43 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		key_press2(int key_code,
 		fdf->events.iso = 1;
 	if (key_code == ESC)
 	{
-		// ft_free(fdf, points)
+		free_structs(fdf);
 		exit(0);
 	}
 	if (key_code == M)

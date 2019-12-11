@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/17 15:10:07 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 14:03:48 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 16:08:37 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char		*ft_arrayalloc(const char *s, char c, int *index)
 	j = *index;
 	while (j != c && s[j])
 		j++;
-	array = (char *)ft_memalloc(sizeof(array) * (j - *index));
+	array = (char *)malloc(sizeof(array) * (j - *index));
 	if (!array)
 	{
 		ft_strarradel(array);
@@ -74,7 +74,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	numofparts = ft_wrdscount(s, c);
-	array = (char**)ft_memalloc(sizeof(char *) * numofparts + 1);
+	array = (char**)malloc(sizeof(char *) * numofparts + 1);
 	if (!array)
 		return (NULL);
 	while (s[i] == c && s[i])

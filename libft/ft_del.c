@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memalloc.c                                      :+:    :+:            */
+/*   ft_del.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 10:23:01 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 15:41:28 by jesmith       ########   odam.nl         */
+/*   Created: 2019/12/11 15:17:32 by jesmith        #+#    #+#                */
+/*   Updated: 2019/12/11 17:45:56 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void	ft_del(void *data, size_t size)
 {
-	void *p;
-
-	p = malloc(size);
-	if (p == NULL)
-		return (NULL);
-	ft_bzero(p, size);
-	return (p);
+	if (data == NULL)
+		return ;
+	ft_bzero(data, size);
+	free(data);
+	data = NULL;
+	size = 0;
 }
