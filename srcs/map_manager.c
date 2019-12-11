@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/10 19:57:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 09:55:39 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void			center_point(t_fdf *fdf, t_points *alt_point)
 static t_points		alt_point(t_fdf *fdf, t_points *point)
 {
 	t_points alt_point;
-	t_events *event = &fdf->events;
+	t_events *event;
 
+	event = &fdf->events;
 	alt_point = *point;
 	if (event->reset == 1)
 		event_reset(event);
@@ -47,9 +48,10 @@ static void			print_lines(t_fdf *fdf)
 	int			x;
 	int			y;
 	t_points	start;
-	t_points	*point = fdf->points;
+	t_points	*point;
 
 	y = 0;
+	point = fdf->points;
 	while (point != NULL)
 	{
 		x = 0;

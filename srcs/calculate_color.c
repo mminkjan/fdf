@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 16:20:17 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 19:57:40 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/11 09:55:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ static double		percentage(double start, double current, double end)
 int					get_color(t_fdf *fdf, double altitude)
 {
 	double	percent;
-	t_color	color = fdf->color;
+	t_color	color;
 	int		red;
 	int		green;
 	int		blue;
 
+	color = fdf->color;
 	percent = percentage(fdf->alt_min, altitude, fdf->alt_max);
 	set_color(&fdf->color, fdf->events);
 	red = get_bit_value(
