@@ -6,12 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/12 17:20:45 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/12 17:26:58 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+//doo norm
 static void			free_str(char **alt_values)
 {
 	size_t index;
