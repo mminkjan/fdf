@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/12 17:27:45 by mminkjan      ########   odam.nl          #
+#    Updated: 2019/12/12 17:28:36 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ add : fclean
 push :
 ifdef MSG
 	@ git commit -m "$(MSG)"
-	@ git push -u git
+	@ git push -u origin
 
 else 
     @ echo "usage ex: make push MSG="<message>"
