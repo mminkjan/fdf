@@ -6,7 +6,7 @@
 /*   By: Malou <Malou@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/13 14:37:04 by Malou          #+#    #+#                */
-/*   Updated: 2019/12/10 13:14:00 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/12 18:06:47 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void		draw_x_dominant(t_fdf *fdf, t_line *line,
 		point.alt += line->delta_alt;
 		point.color = get_color(fdf, point.alt);
 		put_pixel(fdf, point);
-		point.x++;
+		point.x++; 
 	}
 }
 

@@ -6,13 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/12 17:26:58 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/12 18:21:19 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-//doo norm
+#include <stdio.h>
 static void			free_str(char **alt_values)
 {
 	size_t index;
@@ -107,7 +107,7 @@ void				import_map(t_fdf *fdf,
 	while (ret_val > 0)
 	{
 		alt_values = ft_strsplit(line, ' ');
-		if (alt_values == NULL)
+		if (alt_values[0] == NULL)
 			ft_exit(MALLOC_ERR);
 		line_extract(points, alt_values, fdf);
 		fdf->max_y += 1;
