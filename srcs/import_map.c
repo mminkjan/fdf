@@ -6,13 +6,12 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/16 16:13:18 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/16 16:27:59 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-#include <stdio.h>
 static void			free_str(char **alt_values)
 {
 	size_t index;
@@ -102,7 +101,7 @@ void				import_map(t_fdf *fdf,
 	if (fd <= 0)
 		ft_exit(FILE_ERR);
 	ret_val = get_next_line(fd, &line);
-	if (ret_val == 0)
+	if (ret_val <= 0)
 		ft_exit(INVAL_ERR);
 	while (ret_val > 0)
 	{
