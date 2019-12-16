@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/12 18:21:19 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/16 16:13:18 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				import_map(t_fdf *fdf,
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (fd <= 0)
 		ft_exit(FILE_ERR);
 	ret_val = get_next_line(fd, &line);
 	if (ret_val == 0)
