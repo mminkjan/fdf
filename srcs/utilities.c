@@ -6,11 +6,18 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:01:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 19:35:37 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/19 15:17:46 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void			ft_exit(char *str, int fd)
+{
+	ft_putstr(str);
+	close(fd);
+	exit(0);
+}
 
 double			percentage(t_fdf *fdf, double current)
 {
@@ -45,7 +52,7 @@ t_fdf			*fdf_init(void)
 
 	fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf));
 	if (fdf == NULL)
-		ft_exit(USAGE_ERR);
+		ft_exit(USAGE_ERR, 0);
 	ft_bzero(fdf, sizeof(t_fdf));
 	fdf->events.color_set = 1;
 	fdf->events.zoom = 1;
