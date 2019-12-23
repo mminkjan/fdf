@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/28 10:06:07 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/16 16:23:08 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/23 19:00:50 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_list	*basement(int fd)
 	if (current == NULL)
 	{
 		str = ft_strnew(0);
+		if (str == NULL)
+			return (NULL);
 		current = ft_lstnew(str, 1);
 		if (current == NULL)
 			return (NULL);

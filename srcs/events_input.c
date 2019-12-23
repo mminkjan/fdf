@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 15:07:16 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 17:57:43 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/23 18:36:29 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ int				mouse_release(int button,
 static void		key_press2(int key_code,
 					t_fdf *fdf)
 {
-	if (key_code == PLUS)
-		fdf->events.extend++;
-	if (key_code == MIN)
-		fdf->events.extend--;
 	if (key_code == ONE)
 		fdf->events.color_set = 1;
 	if (key_code == TWO)
@@ -70,16 +66,20 @@ static void		key_press2(int key_code,
 	if (key_code == FIVE)
 		fdf->events.color_set = 5;
 	if (key_code == ZERO)
+	{
 		fdf->events.iso = 0;
+		fdf->events.top = 1;
+	}
 	if (key_code == I)
+	{
+		fdf->events.top = 0;
 		fdf->events.iso = 1;
+	}
 	if (key_code == ESC)
 	{
 		free_structs(fdf);
 		exit(0);
 	}
-	if (key_code == M)
-		fdf->events.smooth_exit++;
 }
 
 int				key_press(int key_code,
@@ -99,6 +99,10 @@ int				key_press(int key_code,
 		fdf->events.rot_z--;
 	if (key_code == A)
 		fdf->events.rot_z++;
+	if (key_code == PLUS)
+		fdf->events.extend++;
+	if (key_code == MIN)
+		fdf->events.extend--;
 	key_press2(key_code, fdf);
 	return (0);
 }

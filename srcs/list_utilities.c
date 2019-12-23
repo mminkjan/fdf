@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/11 15:08:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 19:25:57 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/23 18:01:16 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void				lst_del(t_points **points,
 	while ((*points)->next_x != 0)
 	{
 		(*points) = (*points)->next_x;
-		free(list);
+		if (*points != NULL)
+			free(*points);
 		list = (*points);
 	}
 	(*points) = (*points)->next_x;
-	free(list);
+	if (*points != NULL)
+		free(*points);
 	(*points) = NULL;
 }
 

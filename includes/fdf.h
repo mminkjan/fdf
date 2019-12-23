@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/19 13:08:25 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/23 20:41:44 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@
 # define TWO_MIDDLE 0xb21f1f
 # define TWO_END 0xfdbb2d
 
-# define THREE_START 0x00E8FF
-# define THREE_MIDDLE 0x00E8FF
-# define THREE_END 0xF34EE5
+# define THREE_START 0xCC95C0
+# define THREE_MIDDLE 0xdbd4b4
+# define THREE_END 0x7AAA1d2
 
 # define FOUR_START 0x1E9600
 # define FOUR_MIDDLE 0xFFF200
