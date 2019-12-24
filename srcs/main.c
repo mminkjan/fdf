@@ -6,20 +6,20 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/23 20:32:09 by mminkjan      ########   odam.nl         */
+/*   Updated: 2019/12/24 12:04:58 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	validate_argument(char *program, char *argument)
+static void	validate_argument(char *program, char *argument)
 {
 	if (ft_strcmp(program, argument) == 0 ||
 		ft_strcmp(&program[2], argument) == 0)
 		ft_exit(INVAL_ERR, 0);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_fdf		*fdf;
 
