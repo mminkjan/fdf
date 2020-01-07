@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_has_prefix.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/11 15:17:32 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/04 12:44:21 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/07 16:51:00 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/07 16:51:51 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_del(void *data, size_t size)
+int	ft_has_prefix(const char *str, int base)
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
+	size_t	index;
+
+	index = 0;
+	if (base == 2 || base == 8 || base == 16)
+	{
+		if (str[index] != '0')
+			return (0);
+		index++;
+		if (base == 2 && (str[index] == 'b' || str[index] == 'B'))
+			return (1);
+		if (base == 16 && (str[index] == 'x' || str[index] == 'X'))
+			return (1);
+		if (base == 8)
+			return (1);
+	}
+	return (0);
 }

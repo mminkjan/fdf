@@ -6,11 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/11 15:08:17 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/23 18:01:16 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/07 16:52:14 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdbool.h>
+#include <stdio.h>
 
 void				lst_del(t_points **points,
 						void (ft_del)(void*, size_t))
@@ -65,4 +67,31 @@ void				order_list(t_fdf *fdf, t_points *points)
 		}
 		y++;
 	}
+}
+
+int					ft_isnumber(char *str, int base)
+{
+	size_t		index;
+	size_t		digits;
+
+	index = 0;
+	digits = 0;
+	while (ft_iswhitespace(str[index]))
+		index++;
+	if (base != 10 && ft_has_prefix(&str[index], base) == 0)
+		return (0);
+	if (base == 2 || base == 16)
+		index += 2;
+	else if (base == 8)
+		index++;
+	else if (base == 10 && (str[index] == '-' || str[index] == '+'))
+		index++;
+	while (ft_isdigit_base(str[index], base) >= 0)
+	{
+		index++;
+		digits++;
+	}
+	if (str[index] == '\0' && digits)
+		return (1);
+	return (0);
 }

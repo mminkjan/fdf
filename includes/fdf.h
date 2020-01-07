@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/23 20:41:44 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/07 16:55:59 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define USAGE_ERR	"usage error: input valid map\n"
+# define USAGE_ERR	"usage error: input valid file\n"
 # define FILE_ERR	"error: opening file\n"
 # define MALLOC_ERR	"error: malloc\n"
 # define INVAL_ERR	"error: invalid map\n"
@@ -158,6 +158,7 @@ void					free_structs(t_fdf *fdf);
 void					order_list(t_fdf *fdf, t_points *points);
 void					lst_del(t_points **points, \
 							void (*del)(void*, size_t));
+int						ft_isnumber(char *nb, int base);
 
 void					event_rot_x(int pos, t_points *alt_point);
 void					event_rot_y(int pos, t_points *alt_point);
