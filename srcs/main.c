@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/11 13:30:52 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/11 13:37:05 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int			main(int argc, char **argv)
 {
 	t_fdf		*fdf;
 
+	fdf = NULL;
 	if (argc != 2)
-		ft_exit(USAGE_ERR, 0, NULL);
-	validate_argument(argv[0], argv[1], NULL);
+		ft_exit(USAGE_ERR, 0, fdf);
+	validate_argument(argv[0], argv[1], fdf);
 	fdf = fdf_init();
 	fdf->map_name = ft_strdup(argv[1]);
 	mlx_setup(fdf);
