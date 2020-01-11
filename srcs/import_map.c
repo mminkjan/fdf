@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 10:03:52 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/07 16:48:54 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/11 13:31:13 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void			lst_addback(t_points **points,
 	temp->next_x = alt;
 }
 
-static t_points		*new_alt_node(char *alt_values, int fd)
+static t_points		*new_alt_node(char *alt_values,
+						int fd, t_fdf *fdf)
 {
 	t_points	*new_node;
 	int			value;
@@ -39,7 +40,7 @@ static t_points		*new_alt_node(char *alt_values, int fd)
 	if (new_node == NULL)
 	{
 		free(new_node);
-		ft_exit(MALLOC_ERR, fd);
+		ft_exit(MALLOC_ERR, fd, fdf);
 	}
 	color_str = ft_strsplit(alt_values, ',');
 	if (color_str == NULL ||
@@ -47,7 +48,7 @@ static t_points		*new_alt_node(char *alt_values, int fd)
 	{
 		free(new_node);
 		ft_strarradel(alt_values);
-		ft_exit(MALLOC_ERR, fd);
+		ft_exit(MALLOC_ERR, fd, fdf);
 	}
 	new_node->color = color_str[1] ? ft_atoi_base(color_str[1], 16) : -1;
 	ft_free_strarr(color_str);
@@ -68,7 +69,7 @@ static void			line_extract(t_points **points,
 	length = 0;
 	while (*alt_values)
 	{
-		temp = new_alt_node(*(alt_values), fd);
+		temp = new_alt_node(*(alt_values), fd, fdf);
 		lst_addback(points, temp);
 		alt_values++;
 		length++;
@@ -80,7 +81,7 @@ static void			line_extract(t_points **points,
 		if (fdf->max_x != length)
 		{
 			lst_del(points, (void (*)(void*, size_t))points);
-			ft_exit(INVAL_ERR, fd);
+			ft_exit(INVAL_ERR, fd, fdf);
 		}
 	}
 }
@@ -96,13 +97,13 @@ void				import_map(t_fdf *fdf,
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		ft_exit(FILE_ERR, fd);
+		ft_exit(FILE_ERR, fd, fdf);
 	ret_val = get_next_line(fd, &line);
 	while (ret_val > 0)
 	{
 		alt_values = ft_strsplit(line, ' ');
 		if (alt_values == NULL)
-			ft_exit(MALLOC_ERR, fd);
+			ft_exit(MALLOC_ERR, fd, fdf);
 		line_extract(points, alt_values, fdf, fd);
 		fdf->max_y += 1;
 		ft_free_strarr(alt_values);

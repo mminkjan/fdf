@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/07 16:55:59 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/11 13:28:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int						mouse_release(int button, int x, int y, t_fdf *fdf);
 int						mouse_press(int button, int x, int y, t_fdf *fdf);
 int						mouse_move(int x, int y, t_fdf *fdf);
 
-void					ft_exit(char *str, int fd);
+void					ft_exit(char *str, int fd, t_fdf *fdf);
 t_fdf					*fdf_init(void);
 void					swap_points(t_points *a, t_points *b);
 double					percentage(t_fdf *fdf, double current);

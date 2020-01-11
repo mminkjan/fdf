@@ -6,17 +6,17 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:02:56 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/07 16:28:13 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/11 13:30:52 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	validate_argument(char *program, char *argument)
+static void	validate_argument(char *program, char *argument, t_fdf *fdf)
 {
 	if (ft_strcmp(program, argument) == 0 ||
 		ft_strcmp(&program[2], argument) == 0)
-		ft_exit(INVAL_ERR, 0);
+		ft_exit(INVAL_ERR, 0, fdf);
 }
 
 int			main(int argc, char **argv)
@@ -24,8 +24,8 @@ int			main(int argc, char **argv)
 	t_fdf		*fdf;
 
 	if (argc != 2)
-		ft_exit(USAGE_ERR, 0);
-	validate_argument(argv[0], argv[1]);
+		ft_exit(USAGE_ERR, 0, NULL);
+	validate_argument(argv[0], argv[1], NULL);
 	fdf = fdf_init();
 	fdf->map_name = ft_strdup(argv[1]);
 	mlx_setup(fdf);
