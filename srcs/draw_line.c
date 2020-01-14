@@ -6,21 +6,11 @@
 /*   By: Malou <Malou@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/13 14:37:04 by Malou          #+#    #+#                */
-/*   Updated: 2020/01/07 13:49:42 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 11:06:07 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// static void	put_pixel(t_fdf *fdf, t_points point)
-// {
-// 	if (point.x > 0 && point.x < WIDTH && point.y > 0 && point.y < HEIGHT)
-// 	{
-// 		// printf("PUT PIXEL TO IMG\nx: %d\ny: %d\ncolor: %#x\n", x, y, fdf->points->color);
-// //		put_pixel(start, x, y, color);
-// 		ft_memcpy(&fdf->addr_str[(4 * (int)point.y * WIDTH) + (4 * (int)point.x)], &fdf->points->color, 4);
-// 	}
-// }
 
 static void		put_pixel(t_fdf *fdf, t_points point)
 {
