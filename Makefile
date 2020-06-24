@@ -6,7 +6,7 @@
 #    By: mminkjan <mminkjan@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/06/05 15:48:04 by mminkjan       #+#    #+#                 #
-#    Updated: 2019/12/12 17:30:57 by mminkjan      ########   odam.nl          #
+#    Updated: 2019/12/23 20:28:36 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS_FILE = main mlx_setup utilities import_map calculate_points map_manager \
 
 CFILES =  $(SRCS_FILE:%=$(SRCS)%.c)
 
+OFILES = $(CFILES:%.c=%.o)
+
 HFILES = includes/fdf.h
 
 FILES = author Makefile
@@ -34,13 +36,17 @@ FILES = author Makefile
 
 all : $(NAME)
 
-$(NAME) :
+%.o: %.c
+	@gcc -c $(FLAGS) $@ $<
+
+$(NAME) : $(OFILES)
 	@make re -C $(LIBFT)
 	@gcc -I $(MLX) -L $(MLX) $(MLXFLAGS) -I $(LIBFT) -L $(LIBFT) -lft \
 	$(CFILES) $(FLAGS) $(NAME)
 
 clean :
 	@make clean -C $(LIBFT)
+	@rm -f $(OFILES)
 	@rm -f *#
 	@rm -f *~
 	@rm -f .DS_Store

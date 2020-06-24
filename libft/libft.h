@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/14 11:16:37 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 17:46:04 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/07 16:51:42 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ char				*ft_strnstr(const char *haystack, const char *needle,
 					size_t len);
 int					ft_strcmp(char const *s1, char const *s2);
 int					ft_strncmp(char const *s1, char const *s2, size_t len);
+void				ft_free_strarr(char **str_array);
 size_t				ft_atoi(const char *str);
+int					ft_atoi_base(const char *str, int base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
+int					ft_isdigit_base(char c, int base);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
@@ -93,7 +96,7 @@ int					ft_countdigits(int n);
 void				ft_nametag(void);
 void				ft_lstaddback(t_list **alst, t_list *blst);
 int					get_next_line(const int fd, char **line);
-void				ft_exit(char *str);
 void				ft_del(void *data, size_t size);
+int					ft_has_prefix(const char *str, int base);
 
 #endif

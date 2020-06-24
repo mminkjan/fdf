@@ -6,13 +6,13 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/17 15:10:07 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 16:08:37 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/07 16:24:25 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_arrayalloc(const char *s, char c, int *index)
+static char		*ft_arrayalloc(const char *s, char c, int *index, char **strs)
 {
 	char	*array;
 	size_t	i;
@@ -26,6 +26,7 @@ static char		*ft_arrayalloc(const char *s, char c, int *index)
 	if (!array)
 	{
 		ft_strarradel(array);
+		ft_free_strarr(strs);
 		return (NULL);
 	}
 	while (s[*index] != c && s[*index])
@@ -35,8 +36,6 @@ static char		*ft_arrayalloc(const char *s, char c, int *index)
 		*index = *index + 1;
 	}
 	array[i] = '\0';
-	while (s[*index] == c && s[*index])
-		*index = *index + 1;
 	return (array);
 }
 
@@ -75,14 +74,16 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	numofparts = ft_wrdscount(s, c);
 	array = (char**)malloc(sizeof(char *) * numofparts + 1);
-	if (!array)
+	if (array == NULL)
 		return (NULL);
 	while (s[i] == c && s[i])
 		i++;
 	while (j < numofparts && s[i])
 	{
-		array[j] = ft_arrayalloc(s, c, &i);
+		array[j] = ft_arrayalloc(s, c, &i, array);
 		j++;
+		while (s[i] == c && s[i])
+			i++;
 	}
 	array[j] = 0;
 	return (array);

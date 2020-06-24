@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_exit.c                                          :+:    :+:            */
+/*   ft_isdigit_base.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/02 17:35:36 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/02 17:38:19 by mminkjan      ########   odam.nl         */
+/*   Created: 2020/01/07 16:49:33 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/07 16:49:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_exit(char *str)
+int		ft_isdigit_base(char c, int base)
 {
-	ft_putstr(str);
-	exit(0);
+	const char	*digits;
+	int			index;
+
+	digits = "0123456789ABCDEF";
+	index = 0;
+	while (index < base)
+	{
+		if (digits[index] == ft_toupper(c))
+			return (index);
+		index++;
+	}
+	return (-1);
 }

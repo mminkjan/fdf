@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 16:20:17 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 11:56:03 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/06 16:02:15 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int					get_color(t_fdf *fdf, double altitude)
 	int		green;
 	int		blue;
 
+	if (fdf->points->color != -1)
+		return (fdf->points->color);
 	percent = percentage(fdf, altitude);
 	if (altitude <= fdf->alt_mid)
 		set_color_to_mid(&fdf->color, fdf->events);

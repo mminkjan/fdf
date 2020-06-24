@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/28 10:06:07 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/10 19:24:58 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/23 19:00:50 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_list	*basement(int fd)
 	if (current == NULL)
 	{
 		str = ft_strnew(0);
+		if (str == NULL)
+			return (NULL);
 		current = ft_lstnew(str, 1);
 		if (current == NULL)
 			return (NULL);
@@ -84,12 +86,15 @@ int		get_next_line(const int fd, char **line)
 	t_list	*box;
 	char	buff[BUFF_SIZE + 1];
 
-	ret = 1;
-	if (fd < 0 || line == NULL || read(fd, buff, 0) != 0)
+	if (fd < 0 || line == NULL)
+		return (-1);
+	ret = read(fd, buff, 0);
+	if (ret < 0)
 		return (-1);
 	box = basement(fd);
 	if (box == NULL)
 		return (-1);
+	ret = 1;
 	while (ret > 0 && ft_strchr(box->content, '\n') == NULL)
 	{
 		ret = read(fd, buff, BUFF_SIZE);

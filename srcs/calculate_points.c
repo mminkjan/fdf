@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 12:44:41 by jesmith        #+#    #+#                */
-/*   Updated: 2019/12/11 12:17:04 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/12/16 16:31:30 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		define_loop(t_fdf *fdf,
 {
 	points->x = fdf->tile_size * (int)position.x - (fdf->map_width / 2);
 	points->y = fdf->tile_size * (int)position.y - (fdf->map_height / 2);
-	if (points->alt != 0)
+	if (points->alt != 0 && delta_altitude != 0)
 		points->z = fdf->tile_size / delta_altitude * points->alt;
 	else
 		points->z = 0;

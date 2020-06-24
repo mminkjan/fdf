@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:06:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2019/12/11 19:12:10 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/11 13:28:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define USAGE_ERR	"usage error: input valid map\n"
+# define USAGE_ERR	"usage error: input valid file\n"
 # define FILE_ERR	"error: opening file\n"
 # define MALLOC_ERR	"error: malloc\n"
 # define INVAL_ERR	"error: invalid map\n"
@@ -51,9 +51,9 @@
 # define TWO_MIDDLE 0xb21f1f
 # define TWO_END 0xfdbb2d
 
-# define THREE_START 0x00E8FF
-# define THREE_MIDDLE 0x00E8FF
-# define THREE_END 0xF34EE5
+# define THREE_START 0xCC95C0
+# define THREE_MIDDLE 0xdbd4b4
+# define THREE_END 0x7AAA1d2
 
 # define FOUR_START 0x1E9600
 # define FOUR_MIDDLE 0xFFF200
@@ -149,6 +149,7 @@ int						mouse_release(int button, int x, int y, t_fdf *fdf);
 int						mouse_press(int button, int x, int y, t_fdf *fdf);
 int						mouse_move(int x, int y, t_fdf *fdf);
 
+void					ft_exit(char *str, int fd, t_fdf *fdf);
 t_fdf					*fdf_init(void);
 void					swap_points(t_points *a, t_points *b);
 double					percentage(t_fdf *fdf, double current);
@@ -157,6 +158,7 @@ void					free_structs(t_fdf *fdf);
 void					order_list(t_fdf *fdf, t_points *points);
 void					lst_del(t_points **points, \
 							void (*del)(void*, size_t));
+int						ft_isnumber(char *nb, int base);
 
 void					event_rot_x(int pos, t_points *alt_point);
 void					event_rot_y(int pos, t_points *alt_point);
